@@ -1,41 +1,26 @@
-import { auth, signIn, signOut } from "@/auth";
+import { options } from "./api/auth/[...nextauth]/options"
+import { getServerSession } from "next-auth/next"
+import UserCard from "./components/UserCard"
+import {Session} from "next-auth";
+import MainTable from "@/app/components/MainTable";
 
-function SignIn() {
-  return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn("github");
-      }}
-    >
-      <p>You are not logged in</p>
-      <button type="submit">Sign in with GitHub</button>
-    </form>
-  );
-}
-
-function SignOut({ children }: { children: React.ReactNode }) {
-  return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-    >
-      <p>{children}</p>
-      <button type="submit">Sign out</button>
-    </form>
-  );
-}
-
-export default async function Page() {
-  let session = await auth();
-  let user = session?.user?.email;
+export default async function Home() {
+  const session: Session | null = await getServerSession(options)
 
   return (
-    <section>
-      <h1>Home</h1>
-      <div>{user ? <SignOut>{`Welcome ${user}`}</SignOut> : <SignIn />}</div>
-    </section>
-  );
+    <>
+      {session ? (
+        <>
+          <div>
+            <MainTable />
+          </div>
+          {/*<div>*/}
+            {/*<UserCard user={session?.user} pagetype={"Home"} />*/}
+          {/*</div>*/}
+        </>
+      ) : (
+        <h1 className="text-5xl">You Shall Not Pass!</h1>
+      )}
+    </>
+  )
 }
