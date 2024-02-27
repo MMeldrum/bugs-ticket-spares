@@ -2,7 +2,7 @@ import type { NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import FacebookProvider from 'next-auth/providers/facebook';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import {User} from "next-auth";
+import { User } from "next-auth";
 import Google from "next-auth/providers/google";
 
 export const options: NextAuthOptions = {

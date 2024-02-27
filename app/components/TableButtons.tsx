@@ -1,12 +1,12 @@
 
 import { Button, ButtonGroup } from 'flowbite-react';
 
-function Component() {
+export default function TableMenu() {
   return (
     <ButtonGroup>
-      <Button color="gray">Profile</Button>
-      <Button color="gray">Settings</Button>
-      <Button color="gray">Messages</Button>
+      <Button color="gray">Add Ticket</Button>
+      {/*<Button color="gray">Settings</Button>*/}
+      {/*<Button color="gray">Messages</Button>*/}
     </ButtonGroup>
   );
 }

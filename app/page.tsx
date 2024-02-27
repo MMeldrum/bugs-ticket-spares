@@ -1,8 +1,9 @@
 import { options } from "./api/auth/[...nextauth]/options"
 import { getServerSession } from "next-auth/next"
-import UserCard from "./components/UserCard"
 import {Session} from "next-auth";
 import MainTable from "@/app/components/MainTable";
+import TableMenu from "@/app/components/TableButtons";
+
 
 export default async function Home() {
   const session: Session | null = await getServerSession(options)
@@ -12,6 +13,7 @@ export default async function Home() {
       {session ? (
         <>
           <div>
+            <TableMenu/>
             <MainTable />
           </div>
           {/*<div>*/}
